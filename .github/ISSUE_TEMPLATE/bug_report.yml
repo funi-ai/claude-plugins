@@ -1,0 +1,81 @@
+name: Bug report
+description: A skill or one of its scripts did something wrong.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please leave out your fal API key, request IDs you want to keep private, and private photos or recordings. A security problem belongs in a [private report](https://github.com/funi-ai/claude-plugins/security/advisories/new), not here.
+  - type: dropdown
+    id: skill
+    attributes:
+      label: Skill
+      options:
+        - setup
+        - models
+        - image
+        - video
+        - audio
+        - character
+        - pipelines
+        - product-photoshoot
+        - ads
+        - short-video
+        - video-explainer
+        - youtube-thumbnail
+        - marketplace-cards
+        - 3d
+        - brandkit
+        - launch-graphics
+        - demo-video
+        - Not sure, or several
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you asked for, what the skill did, and what you expected it to do.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: How to reproduce it
+      description: Your prompt or the command that failed, plus anything about the project that matters, such as the input files or settings in `.genmedia/config.json`.
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Error output
+      description: The error the skill reported, or the relevant lines of script output.
+      render: text
+  - type: input
+    id: plugin-version
+    attributes:
+      label: Plugin version
+      description: Shown in `/plugin`, or the `version` in the plugin's `plugin.json`.
+      placeholder: 0.1.0
+    validations:
+      required: true
+  - type: input
+    id: genmedia-version
+    attributes:
+      label: genmedia CLI version
+      description: Output of `genmedia version --json`.
+  - type: input
+    id: claude-version
+    attributes:
+      label: Claude Code version
+      description: Output of `claude --version`.
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - macOS
+        - Linux
+        - Windows (WSL)
+        - Windows
+        - Other

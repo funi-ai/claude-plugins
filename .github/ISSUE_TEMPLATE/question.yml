@@ -1,0 +1,20 @@
+name: Question
+description: How to do something with the plugin, or why a skill behaved the way it did.
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        `/genmedia-skills:setup` and the Troubleshooting section of the [plugin README](https://github.com/funi-ai/claude-plugins/tree/main/plugins/genmedia-skills#troubleshooting) answer most install and permission questions.
+  - type: textarea
+    id: question
+    attributes:
+      label: Your question
+      description: What you want to do, what you tried, and where you got stuck.
+    validations:
+      required: true
+  - type: input
+    id: plugin-version
+    attributes:
+      label: Plugin version
+      placeholder: 0.1.0

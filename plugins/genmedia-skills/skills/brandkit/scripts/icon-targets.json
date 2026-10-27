@@ -1,0 +1,104 @@
+{
+  "verified_on": "2026-09-20",
+  "about": "Dated cache of platform icon rules, read by brandkit.py icon-export. Every number was read on verified_on from the platform's own page (source_urls). A null or an entry under `unverified` is a value nobody read on an official page: never fill it from memory. When a store or tool rejects a file, the official page wins and this file is corrected.",
+  "unverified": [
+    "Apple: no current page read on verified_on states the 'no alpha' rule for the App Store icon; the archived QA1686 (2016) allows an alpha channel without transparent regions. The iOS master is written opaque WITHOUT an alpha channel, which satisfies both readings.",
+    "Apple: corner radius, squircle formula and macOS artwork inset are not published on the pages read; `macos.radius` is this project's drawing choice, not Apple's grid.",
+    "Android: pixel sizes per density are arithmetic (108 dp x density factor); no page lists them. Legacy launcher PNGs (API 25 and lower) are not produced.",
+    "Chrome: the 192 px and 512 px install requirement was read on pages dated 2024; whether current Chrome still enforces it was not confirmed.",
+    "apple-touch-icon: 180x180 is the largest size in Apple's archived example (2016); no current Apple page states a required size.",
+    "SVG favicons: no first-party browser document was read; the HTML Standard defines `sizes=\"any\"` for scalable icons. Google Search does not list SVG among its favicon formats.",
+    "ICO: PNG entries and the 0 = 256 convention come from Microsoft developer blog posts (2010) and a Windows 7-era guide, not from a formal specification."
+  ],
+  "platforms": {
+    "ios": {
+      "label": "iOS, iPadOS and App Store master",
+      "files": [{"path": "ios/AppIcon-1024.png", "size": 1024, "shape": "square", "alpha": false}],
+      "notes": [
+        "Layout 1024x1024 px, square; the system masks the corners: deliver unmasked artwork.",
+        "Xcode builds every iOS, iPadOS and watchOS size from one 1024x1024 image (the default behaviour).",
+        "The system generates dark, clear and tinted variants that are not provided.",
+        "Icon Composer layered icons are made in Apple's tool from the SVG mark; this export does not write that format."
+      ],
+      "source_urls": [
+        "https://developer.apple.com/design/human-interface-guidelines/app-icons",
+        "https://developer.apple.com/documentation/xcode/configuring-your-app-icon",
+        "https://developer.apple.com/documentation/xcode/creating-your-app-icon-using-icon-composer"
+      ]
+    },
+    "play": {
+      "label": "Google Play store icon",
+      "files": [{"path": "play/play-icon-512.png", "size": 512, "shape": "square", "alpha": true}],
+      "max_bytes": 1048576,
+      "mask_radius": 0.30,
+      "notes": [
+        "512x512 px, 32-bit PNG (with alpha), sRGB, at most 1024 KB.",
+        "Full square, no shadow: Google Play masks it with a radius of 30 percent of the icon size.",
+        "No badges or text that suggest ranking, price, deals or Google Play categories."
+      ],
+      "source_urls": [
+        "https://developer.android.com/distribute/google-play/resources/icon-design-specifications",
+        "https://support.google.com/googleplay/android-developer/answer/9866151"
+      ]
+    },
+    "android": {
+      "label": "Android adaptive icon layers",
+      "layer_dp": 108,
+      "safe_dp": 66,
+      "viewport_dp": 72,
+      "min_logo_dp": 48,
+      "densities": {"mdpi": 1.0, "hdpi": 1.5, "xhdpi": 2.0, "xxhdpi": 3.0, "xxxhdpi": 4.0},
+      "notes": [
+        "All layers 108x108 dp; the logo is at least 48x48 dp and at most 66x66 dp; the outer 18 dp on each side is reserved for masking and motion.",
+        "The design guide names the inner 66x66 dp as never clipped; the AdaptiveIconDrawable reference names the inner 72x72 dp as the masked viewport. The export fits the mark to the 66 dp circle.",
+        "No masks or shadows around the outline. The background layer is the plate colour as a colour resource.",
+        "The monochrome layer feeds themed icons (Android 13, API 33 and later); only its alpha is used.",
+        "Bitmaps are allowed, vectors preferred: convert favicon.svg with Android Studio's Vector Asset tool if a vector foreground is wanted."
+      ],
+      "source_urls": [
+        "https://developer.android.com/develop/ui/views/launch/icon_design_adaptive",
+        "https://developer.android.com/reference/android/graphics/drawable/AdaptiveIconDrawable",
+        "https://developer.android.com/training/multiscreen/screendensities"
+      ]
+    },
+    "web": {
+      "label": "Favicon set and PWA icons",
+      "ico_sizes": [16, 32, 48],
+      "apple_touch": 180,
+      "any_sizes": [192, 512],
+      "maskable_sizes": [192, 512],
+      "maskable_safe_radius": 0.40,
+      "notes": [
+        "Maskable safe zone: a centred circle with a radius of 2/5 (40 percent) of the icon size; no transparent pixels in a maskable icon.",
+        "Chrome's install criteria name a 192 px and a 512 px icon. `any` and `maskable` are separate files: web.dev advises against one icon with both purposes.",
+        "Google Search: square, at least 8x8 px, larger than 48x48 px recommended; listed formats are BMP, GIF, ICO, PNG, JPEG, PPM and TIFF; one stable favicon URL per hostname.",
+        "HTML Standard: `sizes` is in raw pixels, `any` marks a scalable icon; among equally fitting icons the LAST declared wins, and /favicon.ico is the fallback when no link is declared.",
+        "favicon.ico holds PNG entries (16, 32, 48 px)."
+      ],
+      "source_urls": [
+        "https://www.w3.org/TR/appmanifest/",
+        "https://web.dev/articles/install-criteria",
+        "https://web.dev/articles/maskable-icon",
+        "https://developers.google.com/search/docs/appearance/favicon-in-search",
+        "https://html.spec.whatwg.org/multipage/links.html#rel-icon",
+        "https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html",
+        "https://devblogs.microsoft.com/oldnewthing/20101022-00/?p=12473"
+      ]
+    },
+    "macos": {
+      "label": "macOS icon set",
+      "iconset": [[16, 1], [16, 2], [32, 1], [32, 2], [128, 1], [128, 2], [256, 1], [256, 2], [512, 1], [512, 2]],
+      "radius": 0.2237,
+      "notes": [
+        "AppIcon.iconset holds icon_<n>x<n>.png and icon_<n>x<n>@2x.png for 16, 32, 128, 256 and 512; 512@2x replaces a 1024 file. `iconutil -c icns` turns the folder into AppIcon.icns.",
+        "A macOS asset catalog needs an asset for each size; the same files fill it.",
+        "Current HIG: macOS shares the 1024x1024 square layout and the system masks it. An .icns file is shown as drawn on older systems, so the set is rendered with rounded corners on a transparent ground."
+      ],
+      "source_urls": [
+        "https://developer.apple.com/design/human-interface-guidelines/app-icons",
+        "https://developer.apple.com/library/archive/documentation/Xcode/Reference/xcode_ref-Asset_Catalog_Format/IconSetType.html",
+        "https://developer.apple.com/library/archive/documentation/GraphicsAnimation/Conceptual/HighResolutionOSX/Optimizing/Optimizing.html"
+      ]
+    }
+  }
+}

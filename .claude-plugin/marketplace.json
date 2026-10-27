@@ -1,0 +1,18 @@
+{
+  "name": "funi-ai",
+  "owner": {
+    "name": "Funi AI",
+    "email": "support@funi.ai",
+    "url": "https://github.com/funi-ai"
+  },
+  "description": "Claude Code plugins published by Funi AI.",
+  "plugins": [
+    {
+      "name": "genmedia-skills",
+      "source": "./plugins/genmedia-skills",
+      "description": "Image, video, audio, 3D, brand and launch-graphics skills for fal.ai's genmedia CLI, with live-verified model routing and cost checks. Unofficial; not affiliated with fal.",
+      "category": "media",
+      "tags": ["image", "video", "audio", "fal", "genmedia"]
+    }
+  ]
+}

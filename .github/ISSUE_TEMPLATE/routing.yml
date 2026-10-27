@@ -1,0 +1,63 @@
+name: Model or price out of date
+description: A model ID stopped working, a parameter changed, a price is wrong, or a better model is out.
+labels: ["routing"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The routing tables are a dated snapshot of fal's catalog, so they drift. Tell us what you saw and when. We check it against the live catalog before we change a table.
+  - type: dropdown
+    id: problem
+    attributes:
+      label: What is out of date
+      options:
+        - The endpoint is gone or returns an error
+        - A parameter was renamed, removed or changed its values
+        - The price differs from what the skill estimated
+        - A newer or better model exists for this job
+        - Something else
+    validations:
+      required: true
+  - type: input
+    id: endpoint
+    attributes:
+      label: Endpoint ID
+      description: The fal endpoint the skill used or should use.
+      placeholder: vendor/model/task
+    validations:
+      required: true
+  - type: dropdown
+    id: skill
+    attributes:
+      label: Skill
+      options:
+        - setup
+        - models
+        - image
+        - video
+        - audio
+        - character
+        - pipelines
+        - product-photoshoot
+        - ads
+        - short-video
+        - video-explainer
+        - youtube-thumbnail
+        - marketplace-cards
+        - 3d
+        - brandkit
+        - launch-graphics
+        - demo-video
+        - Not sure, or several
+  - type: textarea
+    id: details
+    attributes:
+      label: What you saw
+      description: The error, the schema or price you found, and the date. For a better model, say what job it does better and how you compared them.
+    validations:
+      required: true
+  - type: input
+    id: plugin-version
+    attributes:
+      label: Plugin version
+      placeholder: 0.1.0

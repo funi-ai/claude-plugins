@@ -1,0 +1,47 @@
+name: Feature request
+description: A new skill, a new output size or platform, or a change to how a skill works.
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: What are you trying to make?
+      description: The deliverable, where it will be used and who it is for. A concrete example helps more than a general wish.
+    validations:
+      required: true
+  - type: textarea
+    id: today
+    attributes:
+      label: What happens today
+      description: What the plugin does now when you ask for it, or what you do instead.
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What would help
+      description: The behaviour, option or skill you have in mind. Links to platform specs or model pages are welcome.
+    validations:
+      required: true
+  - type: dropdown
+    id: skill
+    attributes:
+      label: Skill
+      options:
+        - A new skill
+        - setup
+        - models
+        - image
+        - video
+        - audio
+        - character
+        - pipelines
+        - product-photoshoot
+        - ads
+        - short-video
+        - video-explainer
+        - youtube-thumbnail
+        - marketplace-cards
+        - 3d
+        - brandkit
+        - launch-graphics
+        - demo-video
+        - Not sure, or several

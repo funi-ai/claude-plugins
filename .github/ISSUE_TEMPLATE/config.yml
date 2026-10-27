@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security problem
+    url: https://github.com/funi-ai/claude-plugins/security/advisories/new
+    about: A private report that only the maintainers can read. Please don't post security problems as public issues.
+  - name: fal account, credits and API keys
+    url: https://fal.ai/dashboard
+    about: Your fal account, billing, keys and request history are handled by fal.
+  - name: Claude Code
+    url: https://github.com/anthropics/claude-code/issues
+    about: Bugs in Claude Code that also happen without this plugin.

@@ -1,0 +1,24 @@
+{
+  "name": "genmedia-skills",
+  "version": "0.1.0",
+  "description": "Agent skills that drive fal.ai's genmedia CLI: image, video, audio, consistent characters and multi-step pipelines, with live-verified model routing, cost gates and a resumable run ledger. Unofficial community project.",
+  "author": {
+    "name": "Funi AI",
+    "email": "support@funi.ai",
+    "url": "https://github.com/funi-ai"
+  },
+  "homepage": "https://github.com/funi-ai/claude-plugins/tree/main/plugins/genmedia-skills",
+  "repository": "https://github.com/funi-ai/claude-plugins",
+  "license": "MIT",
+  "keywords": [
+    "genmedia",
+    "fal",
+    "fal-ai",
+    "image-generation",
+    "video-generation",
+    "audio-generation",
+    "text-to-speech",
+    "generative-media",
+    "skills"
+  ]
+}
